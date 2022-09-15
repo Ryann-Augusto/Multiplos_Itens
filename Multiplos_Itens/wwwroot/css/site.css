@@ -16,3 +16,12 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.field {
+    border: 1px solid #ccc;
+    outline: none;
+}
+
+    .field.--has-error {
+        border-color: #f00;
+    }
