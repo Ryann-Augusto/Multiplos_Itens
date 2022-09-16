@@ -7,7 +7,7 @@ function adicionarCampo() {
     document.querySelector("#moreItens").insertAdjacentHTML('beforeend',
         ' <div class="form-group mt-2">'
         + '<label class="control-label" for="Produtos_' + controleCampo + '__Nome">Nome</label>'
-        + '<input class="form-control field" type="text" data-val="true" data-val-required="The Nome field is required." id="Produtos_' + controleCampo + '__Nome" name="Produtos[' + controleCampo + '].Nome" value="">'
+        + '<input class="form-control field" type="text" data-val="true" data-val-required="The Nome field is required." id="Produtos_' + controleCampo + '__Nome" name="Produtos[' + controleCampo + '].Nome" value="" onblur="validaForm()">'
         + '<span class="text-danger" id="valida_nome' + controleCampo + '"></span>'
         + '</div>')
     controleCampo++;
