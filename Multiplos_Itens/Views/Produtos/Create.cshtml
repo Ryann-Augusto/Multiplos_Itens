@@ -11,18 +11,27 @@
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create" method="post" id="formulario">
+            <table>
+                <tr>
+                    <th>Nome</th>
+                    <th><a class="btn btn-primary" onclick="adicionarCampo()"> + </a></th>
+                    <th><a class="btn btn-primary" onclick="removerCampo()"> - </a></th>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <label asp-for="Produtos[0].Nome" class="control-label"></label>
+                            <input asp-for="Produtos[0].Nome" class="form-control field" onblur="validaForm()" />
+                            <span asp-validation-for="Produtos[0].Nome" class="text-danger"></span>
+                        </div>
+                    </td>
+                    <div id="moreItens">
+                    </div>
+                </tr>
+            </table>
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Produtos[0].Nome" class="control-label"></label>
-                <input asp-for="Produtos[0].Nome" class="form-control field" onblur="validaForm()" />
-                <span asp-validation-for="Produtos[0].Nome" class="text-danger"></span>
-            </div>
-            <div id="moreItens">
 
-            </div>
-            <a class="btn" onclick="validaForm()">valida</a>
             <div class="col-md-4">
-                <a class="btn btn-primary" onclick="adicionarCampo()"> + </a>
             </div>
             <div class="form-group mt-2">
                 <input type="submit" value="Create" class="btn btn-primary" />
@@ -36,5 +45,7 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
 }
