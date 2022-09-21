@@ -30,10 +30,17 @@ function validaForm() {
         catch {
             input.removeClass('--has-error')
         }
-        
-        //var valid = positionList.some()
-        console.log(positionList)
     }
+    var valid = positionList.some((x) => x.substring(0, 4) == "Vazio")
+    var arraySubs = positionList.push()
+    //if()
+    console.log(positionList)
+    console.log(arraySubs)
+    console.log("Funcao Some " + valid)
+}
+
+function checkValue(x) {
+    return x == "Vazio";
 }
 
 function null_or_empty(str, contador) {
@@ -47,10 +54,16 @@ function null_or_empty(str, contador) {
 }
 
 function removerCampo() {
-    controleCampo = controleCampo -1
+    try {
+        controleCampo = controleCampo - 1
         var result = document.querySelector("#div" + controleCampo)
-    console.log(result)
-    result.remove();
+        console.log(result)
+        result.remove();
+    }
+    catch {
+        controleCampo = controleCampo + 1
+    }
+    
 }
 
 
