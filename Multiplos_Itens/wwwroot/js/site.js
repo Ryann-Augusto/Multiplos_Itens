@@ -2,12 +2,10 @@
 var controleCampo = 1;
 function adicionarCampo() {
 
-    //var todos = document.getElementsByClassName("form-control").value();
-
     document.querySelector("#moreItens").insertAdjacentHTML('beforeend',
         ' <div class="form-group mt-2" id="div' + controleCampo + '">'
         + '<label class="control-label" for="Produtos_' + controleCampo + '__Nome">Nome</label>'
-        + '<input class="form-control field" type="text" data-val="true" data-val-required="The Nome field is required." id="Produtos_' + controleCampo + '__Nome" name="Produtos[' + controleCampo + '].Nome" value="" onblur="validaForm()"> </input>'
+        + '<input class="form-control field" type="text" data-val="true" data-val-required="The Nome field is required." id="Produtos_' + controleCampo + '__Nome" name="Produtos[' + controleCampo + '].Nome" value="" onkeyup="validaForm()"> </input>'
         + '<span class="text-danger" id="valida_nome' + controleCampo + '"></span>'
         + '</div>')
     controleCampo++;
@@ -20,7 +18,7 @@ function validaForm() {
         try {
             var input = $('#Produtos_' + i + '__Nome')
             var result = null_or_empty('Produtos_' + i + '__Nome', i)
-            positionList.push(result);
+            positionList.push(result.substring(0,5));
             if (result == "Vazio" + i) {
                 input.addClass('--has-error')
             } else {
@@ -31,11 +29,18 @@ function validaForm() {
             input.removeClass('--has-error')
         }
     }
-    var valid = positionList.some((x) => x.substring(0, 4) == "Vazio")
-    var arraySubs = positionList.push()
-    //if()
+    var valid = positionList.some((x) => x == "Vazio")
+    var button = $('#buttonCreate')
+
+    if (valid == true) {
+        button.ariaDisabled = false;
+        button.addClass('disabled')
+    }
+    else {
+        document.getElementById("buttonCreate").ariaDisabled = true;
+        button.removeClass('disabled')
+    }
     console.log(positionList)
-    console.log(arraySubs)
     console.log("Funcao Some " + valid)
 }
 
@@ -63,7 +68,7 @@ function removerCampo() {
     catch {
         controleCampo = controleCampo + 1
     }
-    
+    validaForm();    
 }
 
 
